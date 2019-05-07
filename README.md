@@ -1,4 +1,4 @@
-#Python Snippets
+# Python Snippets
 
 ## My common shebang and imports:
 ```python
