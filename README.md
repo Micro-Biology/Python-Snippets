@@ -1,7 +1,7 @@
 #Python Snippets
 
 ## My common shebang and imports:
-'''python
+```python
 #!/usr/bin/env python3
 
 import sys
@@ -14,26 +14,26 @@ import shutil
 import subprocess
 import re
 import time
-'''
+```
 
 ## Get arguments:
-'''python
+```python
 def get_args():
     parser = argparse.ArgumentParser(description="This describes what your program does.")
     parser.add_argument("--input_xl", help="Semi-Optional: input excel file in .xlsx format containing information about the samples.", default="info.xlsx", required=False)
     parser.add_argument("--input_dir", help="Semi-Optional: input directory for all input files files.", default="Data", required=False)
     args = parser.parse_args()
     return args
-'''
+```
 
 ## Importing data:
-'''python
+```python
 def import_tsv_as_dataframe(file_name):
     df = pd.read_csv(file_name, delimiter = "\t")
     df = df.rename(index=str)
     return df
-'''
-'''python
+```
+```python
 def import_fastq_entries(fastq_file):
     inter = "inter.txt"
     delete_file(inter)
@@ -53,9 +53,9 @@ def import_fastq_entries(fastq_file):
         read = Single_Fastq_Entry(header,seq,qual,fastq_file)
         fastq_entries.append(read)
     return fastq_entries
-'''
+```
 ## How to init a class:
-'''python
+```python
 class Sample_Metadata: #Listed from biosys.py
     """A slice of an OTU table, and associated metadata for a diatom sample."""
     def __init__(self, sample_name, sample_id):
@@ -83,14 +83,14 @@ class Sample_Metadata: #Listed from biosys.py
             else:
                 self.batch_num = no_value
                 self.analysis_date = no_value
-'''
+```
 ## Copy paste classes:
-'''python
+```python
 class FormatError(Exception):
     '''Formating of an input file is incompatible with this program.'''
         pass
-'''
-'''python
+```
+```python
 class Single_Fastq_Entry:
     '''A class used to store information about paired end fastq data.'''
     def __init__(self,header,seq,qual,filename):
@@ -100,15 +100,15 @@ class Single_Fastq_Entry:
             self.header_full = header.lstrip()
         self.seq = seq.lstrip()
         self.qual = qual.lstrip()
-'''
-'''python
+```
+```python
 class Paired_Fastq_Entry:
     '''A class holding infor about a sample.'''
     def __init__(self,f_fastq,r_fastq):
     self.f = f_fastq
     self.r = r_fastq
-'''
-'''python
+```
+```python
 class Sample_Meta():
     '''A class used to store data about the QC process of the pipeline.'''
     def __init__(self, sample_id, file_path_f, file_path_r, file_format):
@@ -124,9 +124,9 @@ class Sample_Meta():
         self.path_f = file_path_f
         self.path_r = file_path_r
         self.stage = stage_passed
-'''
+```
 ## Subprocess examples:
-'''python
+```python
 def run_cutadapt(sample_list, fprimer, rprimer, directory): 
     error_rate = get_highest_error_rate(fprimer, rprimer)
     print(fprimer, rprimer)
@@ -148,9 +148,9 @@ def run_cutadapt(sample_list, fprimer, rprimer, directory):
             sample.assign_progress("cutadapt", (directory + "/" + sampleid + ".R1.trimmed.fastq.gz"), (directory + "/" + sampleid + ".R2.trimmed.fastq.gz"))
         else:
             print(sample.sample_id + " has failed cutadapt stage.")
-'''
+```
 ## Others, will probably be needed:
-'''python
+```python
 def get_lines(file_in):
     file_open = open(file_in)
     lines = file_open.readlines()
@@ -179,7 +179,7 @@ def get_capital(string):
         word_return = word[0].upper() + word[1:].lower()
         words_return = words_return + word_return + " "
     return words_return.strip() 
-'''
+```
 
 
 
