@@ -61,7 +61,8 @@ class Sample_Metadata: #Listed from biosys.py
     def __init__(self, sample_name, sample_id):
         self.name = sample_name
         self.id = sample_id
-
+```
+```python
     def assign_results(self, otus, batch_num):
         self.otu_tab = otus
         try:
@@ -156,14 +157,17 @@ def remove_info(df, col, info): #Removes info from col in df, removes and row wi
     df = df.set_index(list(df)[0])
     df = df.loc[(df!=0).any(axis=1)]
     return df
-    
+```
+```python
 transposed_df = df.transpose()
-
+```
+```python
 def replace_headers_with_col(df, col_num):
     new_headers = df.iloc[col_num]
     df = df[1:]
     df.columns = new_headers
-
+```
+```python
 def merge_list_of_otu_tables(df_list):
     for otu_tab in df_list:
         try:
@@ -172,7 +176,8 @@ def merge_list_of_otu_tables(df_list):
         except NameError:
             main_df = otu_tab
     return main_df
-    
+```
+```python    
 def merge_on_col(df1, df2, col):
     return pd.merge(df1, df2, on=col)
 ```
@@ -199,12 +204,14 @@ def get_lines(file_in):
     lines = file_open.readlines()
     file_open.close()
     return lines
-
+```
+```python
 def delete_file(file_in):
     file_exists = os.path.isfile(file_in)
     if file_exists == True:
         send2trash.send2trash(file_in)
-
+```
+```python
 def get_initials(string):
     xs = (string)
     words_list = xs.split()
@@ -212,7 +219,8 @@ def get_initials(string):
     for word in words_list:
         initials = initials + word[0].upper()
     return initials
-
+```
+```python
 def get_capital(string):
     xs = (string)
     word_list = xs.split()
