@@ -149,6 +149,49 @@ def run_cutadapt(sample_list, fprimer, rprimer, directory):
         else:
             print(sample.sample_id + " has failed cutadapt stage.")
 ```
+## Dataframe manipulation:
+```python
+def remove_info(df, col, info): #Removes info from col in df, removes and row with all zeros
+    df = df[~df.col.str.contains(info)]
+    df = df.set_index(list(df)[0])
+    df = df.loc[(df!=0).any(axis=1)]
+    return df
+    
+transposed_df = df.transpose()
+
+def replace_headers_with_col(df, col_num):
+    new_headers = df.iloc[col_num]
+    df = df[1:]
+    df.columns = new_headers
+
+def merge_list_of_otu_tables(df_list):
+    for otu_tab in df_list:
+        try:
+            interim_df = otu_tab.drop("taxonid", axis=1)
+            main_df = pd.merge(main_df, interim)df, left_index=True, right_index=True)
+        except NameError:
+            main_df = otu_tab
+    return main_df
+    
+def merge_on_col(df1, df2, col):
+    return pd.merge(df1, df2, on=col)
+```
+
+## Exporting data:
+```python
+def export_to_text(lines):
+    file_out = ("Results.txt")
+    for line in lines:
+        file_out.write(line)
+    file_out.close()
+```
+```python
+def export_to_excel(df):
+    writer = pd.ExcelWriter("output.xlsx")
+    df.to_excel(writer, sheet_name="Sheet1", header=True, index=False)
+    writer.save()
+```
+
 ## Others, will probably be needed:
 ```python
 def get_lines(file_in):
