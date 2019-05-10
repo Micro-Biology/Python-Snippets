@@ -196,7 +196,17 @@ def export_to_excel(df):
     df.to_excel(writer, sheet_name="Sheet1", header=True, index=False)
     writer.save()
 ```
-
+## Progress made:
+```python
+def do_thing(items):
+    for i in items:
+        progress = 100 * (item.index(i) / len(items))
+        sys.stdout.write('\r')
+        sys.stdout.write("\r progress: %d %%"% progress)
+        sys.stdout.flush()
+        time.sleep(0.1)
+    print()
+```
 ## Others, will probably be needed:
 ```python
 def get_lines(file_in):
