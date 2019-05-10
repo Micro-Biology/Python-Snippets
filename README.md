@@ -199,23 +199,28 @@ def export_to_excel(df):
 ## Progress made:
 ```python
 def do_thing(items):
+    ''' does thing with percent indidicator.'''
     for i in items:
         progress = 100 * (item.index(i) / len(items))
         sys.stdout.write('\r')
         sys.stdout.write("\r progress: %d %%"% progress)
         sys.stdout.flush()
         time.sleep(0.1)
-    print()```
+    print()
+```
 ```python
-def progress(count, total, status=''):
-    bar_len = 60
-    filled_len = int(round(bar_len * count / float(total)))
-
-    percents = round(100.0 * count / float(total), 1)
-    bar = '=' * filled_len + '-' * (bar_len - filled_len)
-
-    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
-    sys.stdout.flush()
+def progress(items):
+    ''' does thing with percent indidicator, with 5 decimal places and progress bar.'''
+    for i in items:
+        status = ''
+        count = i
+        total = len(items)
+        bar_len = 60
+        filled_len = int(round(bar_len * count / float(total)))
+        percents = round(100.0 * count / float(total), 5)
+        bar = '=' * filled_len + '-' * (bar_len - filled_len)
+        sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
+        sys.stdout.flush()
 ```
 ## Others, will probably be needed:
 ```python
