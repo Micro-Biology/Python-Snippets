@@ -69,7 +69,7 @@ class Sample_Metadata: #Listed from biosys.py
             count = self.otu_tab[str(self.folder)].sum()
             self.count = count
         except KeyError:
-            elf.count = 0
+            self.count = 0
             print("Seq count for " + str(self.folder) + " has been set to 0.")
         if self.count >= 3000:
             self.pass_fail = "Successful"
