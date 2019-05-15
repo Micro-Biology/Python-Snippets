@@ -162,8 +162,8 @@ def remove_info(df, col, info): #Removes info from col in df, removes and row wi
 transposed_df = df.transpose()
 ```
 ```python
-def replace_headers_with_col(df, col_num):
-    new_headers = df.iloc[col_num]
+def replace_headers_with_col(df, row_num):
+    new_headers = df.iloc[row_num]
     df = df[1:]
     df.columns = new_headers
 ```
