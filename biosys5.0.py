@@ -395,30 +395,35 @@ def perform_similarity_checks(sample_list, writer):
         bar = '=' * filled_len + '-' * (60 - filled_len)
         sys.stdout.write('[%s] %s%s Analysing sample: %s\r' % (bar, percents, '%', status))
         sys.stdout.flush()
-        try:
-            cent_df = sample_cent.otu_tab
-            highest_sim = 0.0
-            most_sim_sample = ""
-            for sample_sur in sample_list:
-                if sample_cent == sample_sur:
-                    pass
-                else:
-                    try:
-                        if sample_cent.plate != sample_sur.plate:
-                            pass
-                        else:
-                            if sample_sur.plate_loc in sample_cent.sur_samples:
-                                sur_df = sample_sur.otu_tab
-                                df = pd.merge(cent_df, sur_df, on="PrefTaxon")
-                                similarity = baroni_urbani_buser_coefficient(df)
-                                if similarity > highest_sim:
-                                    highest_sim = similarity
-                                    most_sim_sample = sample_sur.folder
-                    except AttributeError:
-                        pass
-            sample_cent.assign_most_sim_sample(highest_sim, most_sim_sample)
-        except AttributeError:
+        cent_df = sample_cent.otu_tab
+        if isinstance(cent_df, pd.DataFrame):  
             pass
+        else:
+            continue 
+        highest_sim = 0.0
+        most_sim_sample = ""
+        for sample_sur in sample_list:
+            if sample_cent == sample_sur:
+                pass
+            else:
+                try:
+                    if sample_cent.plate != sample_sur.plate:
+                        pass
+                    else:
+                        if sample_sur.plate_loc in sample_cent.sur_samples:
+                            sur_df = sample_sur.otu_tab
+                            if isinstance(sur_df, pd.DataFrame):
+                                pass
+                            else:
+                                continue
+                            df = pd.merge(cent_df, sur_df, on="PrefTaxon")
+                            similarity = baroni_urbani_buser_coefficient(df)
+                            if similarity > highest_sim:
+                                highest_sim = similarity
+                                most_sim_sample = sample_sur.folder
+                except AttributeError:
+                    pass
+        sample_cent.assign_most_sim_sample(highest_sim, most_sim_sample)
     print("\n")
     folder_nums = []
     sim_samps = []
