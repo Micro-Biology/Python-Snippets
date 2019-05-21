@@ -126,6 +126,11 @@ class Sample_Meta():
         self.path_r = file_path_r
         self.stage = stage_passed
 ```
+```python
+class MathsError(Exception):
+    '''A Maths or Logic error has occured in the code.'''
+    pass
+```
 ## Subprocess examples:
 ```python
 def run_cutadapt(sample_list, fprimer, rprimer, directory): 
