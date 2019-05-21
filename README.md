@@ -185,7 +185,7 @@ def merge_on_col(df1, df2, col):
 ## Exporting data:
 ```python
 def export_to_text(lines):
-    file_out = ("Results.txt")
+    file_out = open("Results.txt", "w")
     for line in lines:
         file_out.write(line)
     file_out.close()
