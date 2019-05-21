@@ -89,7 +89,7 @@ class Sample_Metadata: #Listed from biosys.py
 ```python
 class FormatError(Exception):
     '''Formating of an input file is incompatible with this program.'''
-        pass
+    pass
 ```
 ```python
 class Single_Fastq_Entry:
