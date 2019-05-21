@@ -126,6 +126,18 @@ class Sample_Meta():
         self.path_r = file_path_r
         self.stage = stage_passed
 ```
+```python
+class bcolours:
+    '''Use as print(bcolours.type + "test to print" + bcolours.endc)'''
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+```
 ## Subprocess examples:
 ```python
 def run_cutadapt(sample_list, fprimer, rprimer, directory): 
